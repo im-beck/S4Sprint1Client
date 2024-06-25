@@ -66,7 +66,7 @@ public class Option1Methods {
     public static void viewAllAirports() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/airports"))
+                .uri(URI.create("http://localhost:8080/api/airports/all"))
                 .build();
 
         try {
