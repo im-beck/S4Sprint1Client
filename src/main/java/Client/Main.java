@@ -9,6 +9,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
+/* Libraries*/
+
+import Client.Option1Methods;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -50,7 +54,8 @@ public class Main {
 
             switch (choice){
                 case 1:
-                    /* Austin Implement Aircraft/Airport Menu & Logic*/
+                    Option1Methods.airportAircraftMenu();
+                    break;
 
                 case 2:
                     /* Daniel Implement Passenger Menu & Logic*/
