@@ -163,7 +163,7 @@ public class Option1Methods {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/airports/" + airportID + "/add"))
+                .uri(URI.create("http://localhost:8080/api/aircraft/" + airportID))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString("{ \"city\": \"" + city + "\", \"seating\": " + seating + ", \"capacity\": " + capacity + " }"))
                 .build();
@@ -171,6 +171,7 @@ public class Option1Methods {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String responseBody = response.body();
+            System.out.println(responseBody);
 
             ObjectMapper mapper = new ObjectMapper();
             Map<String, Object> aircraftMap = mapper.readValue(responseBody, new TypeReference<Map<String, Object>>(){});
@@ -216,6 +217,8 @@ public class Option1Methods {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    
 
 }
 
