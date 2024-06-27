@@ -53,7 +53,7 @@ public class Main {
                     /* Austin Implement Aircraft/Airport Menu & Logic*/
 
                 case 2:
-                    /* Daniel Implement Passenger Menu & Logic*/
+                    PassengerMenu.passengerMenu();
 
                 case 3:
                     /* Beck Implement Passenger Menu & Logic*/
