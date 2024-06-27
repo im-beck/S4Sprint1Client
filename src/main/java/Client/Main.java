@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import Client.Option1Methods;
 
+
 public class Main {
 
     public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class Main {
         }
 
         while (true){
-            System.out.println("\nAirline Management System");
+            System.out.println("Airline Management System");
             System.out.println("1. Airport/Aircraft Menu");
             System.out.println("2. Passenger Management");
             System.out.println("3. City Management");
