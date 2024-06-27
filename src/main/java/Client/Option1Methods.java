@@ -27,11 +27,12 @@ public class Option1Methods {
         System.out.println("2. View all Aircraft");
         System.out.println("3. Add an Airport");
         System.out.println("4. Add an Aircraft");
-        System.out.println("5. Update an Airport");
-        System.out.println("6. Update an Aircraft");
-        System.out.println("7. Delete an Airport");
-        System.out.println("8. Delete an Aircraft");
-        System.out.println("9. Back to Main Menu");
+        System.out.println("5. View an Aircraft");
+        System.out.println("6. Update an Airport");
+        System.out.println("7. Update an Aircraft");
+        System.out.println("8. Delete an Airport");
+        System.out.println("9. Delete an Aircraft");
+        System.out.println("10. Back to Main Menu");
 
         System.out.println("Enter your choice: ");
         int choice = scanner.nextInt();
@@ -50,19 +51,21 @@ public class Option1Methods {
                 addAircraft();
                 break;
             case 5:
-                // Add your method call here
+                viewAircraft();
                 break;
             case 6:
-                // Add your method call here
+                updateAirport();
                 break;
             case 7:
-                // Add your method call here
+                updateAircraft();
                 break;
             case 8:
                 // Add your method call here
                 break;
             case 9:
                 // Add your method call here
+                break;
+            case 10:
                 break;
             default:
                 System.out.println("Invalid choice. Please try again.");
@@ -103,6 +106,8 @@ public class Option1Methods {
     }
 
     public static void addAirport() {
+
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the name of the airport: ");
@@ -121,7 +126,7 @@ public class Option1Methods {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/api/airports/add"))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString("{ \"airportID\": " + AIRPORT_ID + ", \"name\": \"" + name + "\", \"city\": { \"id\": " + CITY_ID  + ", \"name\": \"" + city + "\", \"state\": \"" + state + "\", \"population\": " + population + " } }"))
+                .POST(HttpRequest.BodyPublishers.ofString("{ \"airportID\": " + airportID + ", \"name\": \"" + name + "\", \"city\": { \"id\": " + CITY_ID  + ", \"name\": \"" + city + "\", \"state\": \"" + state + "\", \"population\": " + population + " } }"))
                 .build();
 
         try {
@@ -151,15 +156,16 @@ public class Option1Methods {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the airport ID: ");
         int airportID = scanner.nextInt();
-        System.out.println("Enter the Aircraft ID: ");
-
         scanner.nextLine();
         System.out.println("Enter the city of the aircraft: ");
         String city = scanner.nextLine();
         System.out.println("Enter the seating capacity of the aircraft: ");
         int seating = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Enter the capacity of the aircraft: ");
         int capacity = scanner.nextInt();
+        scanner.nextLine();
+
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -176,11 +182,34 @@ public class Option1Methods {
             ObjectMapper mapper = new ObjectMapper();
             Map<String, Object> aircraftMap = mapper.readValue(responseBody, new TypeReference<Map<String, Object>>(){});
             if (aircraftMap.containsKey("aircraftID")) {
-                Long aircraftId = (Long) aircraftMap.get("aircraftID");
+                Number num = (Number) aircraftMap.get("aircraftID");
+                long aircraftId = num.longValue();
                 System.out.println("Aircraft added successfully. Aircraft ID: " + aircraftId);
             } else {
                 System.out.println("The key 'aircraftID' does not exist in the map.");
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    /* Allow for viewing of an aircraft */
+
+    public static void viewAircraft() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the Aircraft ID: ");
+        int aircraftID = scanner.nextInt();
+        scanner.nextLine();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/aircraft/" + aircraftID))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String responseBody = response.body().trim();
+
+            System.out.println(responseBody);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -191,21 +220,20 @@ public class Option1Methods {
         System.out.println("Enter the Airport ID: ");
         int airportID = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter the city ID of the airport: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter the city of the airport: ");
+        System.out.println("Enter the new name of the airport: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter the new city of the airport: ");
         String city = scanner.nextLine();
-        System.out.println("Enter the State of the airport: ");
+        System.out.println("Enter the new state of the airport: ");
         String state = scanner.nextLine();
-        System.out.println("Enter the Cities Population: ");
+        System.out.println("Enter the new population of the city: ");
         int population = scanner.nextInt();
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/airports/update"))
+                .uri(URI.create("http://localhost:8080/api/airports/update/" + airportID))
                 .header("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofString("{ \"airportID\": " + airportID + ", \"city\": { \"id\": " + id + ", \"name\": \"" + city + "\", \"state\": \"" + state + "\", \"population\": " + population + " } }"))
+                .PUT(HttpRequest.BodyPublishers.ofString("{ \"airportID\": " + airportID + ", \"name\": \"" + name + "\", \"city\": { \"id\": " + CITY_ID  + ", \"name\": \"" + city + "\", \"state\": \"" + state + "\", \"population\": " + population + " } }"))
                 .build();
 
         try {
@@ -218,7 +246,36 @@ public class Option1Methods {
         }
     }
 
-    
+    public static void updateAircraft() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the Aircraft ID: ");
+        int aircraftID = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter the new city of the aircraft: ");
+        String city = scanner.nextLine();
+        System.out.println("Enter the new seating capacity of the aircraft: ");
+        int seating = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter the new capacity of the aircraft: ");
+        int capacity = scanner.nextInt();
+        scanner.nextLine();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/aircraft/update/" + aircraftID))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString("{ \"city\": \"" + city + "\", \"seating\": " + seating + ", \"capacity\": " + capacity + " }"))
+                .build();
+
+        try {
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body)
+                    .thenAccept(System.out::println)
+                    .join();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
 }
 
