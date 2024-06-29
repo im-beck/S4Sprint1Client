@@ -9,13 +9,16 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
+
 /* Libraries*/
 
 
 public class Main {
 
+    private static final String BASE_URL = "http://localhost:8080/api";
+
     public static void main(String[] args) {
-            /* Insantiate Scanner for inputs*/
+        /* Insantiate Scanner for inputs*/
 
         Scanner scanner = new Scanner(System.in);
 
@@ -45,7 +48,7 @@ public class Main {
             System.out.println("Airline Management System");
             System.out.println("1. Airport/Aircraft Menu");
             System.out.println("2. Passenger Management");
-            System.out.println("3. City Management");
+            System.out.println("3. City Menu");
             System.out.println("4. Exit");
 
             System.out.println("Enter your choice: ");
@@ -57,10 +60,10 @@ public class Main {
                     break;
 
                 case 2:
-                    /* Daniel Implement Passenger Menu & Logic*/
+                    PassengerMenu.passengerMenu();
 
                 case 3:
-                    /* Beck Implement Passenger Menu & Logic*/
+                    CityMenu.CityMenu(client, scanner);
 
                 case 4:
                     System.exit(0);
@@ -74,7 +77,3 @@ public class Main {
         }
     }
 
-
-
-
-}
