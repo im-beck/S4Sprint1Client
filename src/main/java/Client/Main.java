@@ -9,6 +9,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
+City-Manager
+
+/* Libraries*/
+
+import Client.Option1Methods;
+
+ main
 
 public class Main {
 
@@ -41,8 +48,13 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
+ City-Manager
         while (true) {
             System.out.println("\nAirline Management System");
+
+        while (true){
+            System.out.println("Airline Management System");
+ main
             System.out.println("1. Airport/Aircraft Menu");
             System.out.println("2. Passenger Management");
             System.out.println("3. City Management");
@@ -53,10 +65,11 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    /* Austin Implement Aircraft/Airport Menu & Logic*/
+                    Option1Methods.airportAircraftMenu();
+                    break;
 
                 case 2:
-                    /* Daniel Implement Passenger Menu & Logic*/
+                    PassengerMenu.passengerMenu();
 
                 case 3:
                     CityMenu.CityMenu(client, scanner);
