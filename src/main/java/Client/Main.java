@@ -59,7 +59,7 @@ public class Main {
                     /* Daniel Implement Passenger Menu & Logic*/
 
                 case 3:
-                    cityManagement(client, scanner);
+                    CityMenu.CityMenu(client, scanner);
                     break;
                 case 4:
                     System.exit(0);
@@ -73,83 +73,4 @@ public class Main {
         }
     }
 
-
-    private static void getAirportsInCities(HttpClient client) {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/cities"))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Cities and their airports:");
-            System.out.println(response.body());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    private static void cityManagement(HttpClient client, Scanner scanner) {
-        while (true) {
-            System.out.println("\nCity Management");
-            System.out.println("1. List all cities and their airports");
-            System.out.println("2. Look up city by name");
-            System.out.println("3. Look up city by airport");
-            System.out.println("4. Back to main menu");
-
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
-
-            switch (choice) {
-                case 1:
-                    getAirportsInCities(client);
-                    break;
-                case 2:
-                    lookupCityByName(client, scanner);
-                    break;
-                case 3:
-                    lookupCityByAirport(client, scanner);
-                    break;
-                case 4:
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-    }
-
-    private static void lookupCityByName(HttpClient client, Scanner scanner) {
-        System.out.print("Enter city name: ");
-        String cityName = scanner.nextLine();
-
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/cities/search?name=" + cityName))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("City details:");
-            System.out.println(response.body());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    private static void lookupCityByAirport(HttpClient client, Scanner scanner) {
-        System.out.print("Enter airport ID: ");
-        String airportId = scanner.nextLine();
-
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/cities/search?airportId=" + airportId))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("City details:");
-            System.out.println(response.body());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
 }
