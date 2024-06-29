@@ -46,7 +46,7 @@ public class CityMenu {
 
     public static void CityMenu(HttpClient client, Scanner scanner) {
         while (true) {
-            System.out.println("\nCity Management");
+            System.out.println("\nCity Menu");
             System.out.println("1. List all cities");
             System.out.println("2. Look up city by name");
             System.out.println("3. Back to main menu");
