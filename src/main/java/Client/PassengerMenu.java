@@ -207,7 +207,7 @@ public class PassengerMenu {
         String JSON = "{\"aircraftId\":\"" + aircraftId + "\"}";
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/aircraft"))
+                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/aircraft/" + aircraftId))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(JSON))
                 .build();
@@ -231,7 +231,7 @@ public class PassengerMenu {
         String JSON = "{\"airportId\":\"" + airportId + "\"}";
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/airport"))
+                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/airport/" + airportId))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(JSON))
                 .build();
@@ -252,7 +252,7 @@ public class PassengerMenu {
         Long id = scanner.nextLong();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/passengers/" + id + "/airports"))
+                .uri(URI.create("http://localhost:8080/api/passengers/" + id + "/airport"))
                 .GET()
                 .build();
         try {
