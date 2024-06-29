@@ -10,7 +10,6 @@ public class PassengerMenu {
     public static void passengerMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
         System.out.println("\nPassenger Management");
         System.out.println("1. Add Passenger");
         System.out.println("2. Update Passenger");
@@ -21,7 +20,9 @@ public class PassengerMenu {
         System.out.println("7. Add aircraft to passenger");
         System.out.println("8. Add airport to passenger");
         System.out.println("9. display all airports a passenger has been to");
-        System.out.println("10. Exit");
+        System.out.println("10. delete aircraft from passenger");
+        System.out.println("11. delete airport from passenger");
+        System.out.println("12. Exit");
         int choice = scanner.nextInt();
 
         switch (choice) {
@@ -53,12 +54,16 @@ public class PassengerMenu {
                 displayAllAirportsPassenger();
                 break;
             case 10:
-                System.exit(0);
+                deleteAircraftPassenger();
+                break;
+            case 11:
+                deleteAirportPassenger();
+                break;
+            case 12:
                 break;
             default:
                 System.out.println("Invalid choice");
                 break;
-        }
     }
     }
 
@@ -264,5 +269,49 @@ public class PassengerMenu {
             System.out.println("Error: " + e.getMessage());
         }
     
+    }
+
+    public static void deleteAircraftPassenger() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Passenger ID: ");
+        Long passengerId = scanner.nextLong();
+        System.out.println("Enter Aircraft ID: ");
+        Long aircraftId = scanner.nextLong();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/aircraft/" + aircraftId))
+                .DELETE()
+                .build();
+        try {
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body)
+                    .thenAccept(System.out::println)
+                    .join();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static void deleteAirportPassenger() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Passenger ID: ");
+        Long passengerId = scanner.nextLong();
+        System.out.println("Enter Airport ID: ");
+        Long airportId = scanner.nextLong();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/passengers/" + passengerId + "/airport/" + airportId))
+                .DELETE()
+                .build();
+        try {
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body)
+                    .thenAccept(System.out::println)
+                    .join();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
