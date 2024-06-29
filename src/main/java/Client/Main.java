@@ -49,7 +49,7 @@ public class Main {
             System.out.println("Airline Management System");
             System.out.println("1. Airport/Aircraft Menu");
             System.out.println("2. Passenger Management");
-            System.out.println("3. City Management");
+            System.out.println("3. City Menu");
             System.out.println("4. Exit");
 
             System.out.println("Enter your choice: ");
