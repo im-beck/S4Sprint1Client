@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 /* Libraries*/
 
-import Client.Option1Methods;
 
 public class Main {
 
@@ -45,7 +44,7 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
-        while (true){
+        while (true) {
             System.out.println("Airline Management System");
             System.out.println("1. Airport/Aircraft Menu");
             System.out.println("2. Passenger Management");
@@ -55,7 +54,7 @@ public class Main {
             System.out.println("Enter your choice: ");
             int choice = scanner.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     Option1Methods.airportAircraftMenu();
                     break;
@@ -64,7 +63,7 @@ public class Main {
                     PassengerMenu.passengerMenu();
 
                 case 3:
-                    CityMenu.CityMenu(client, scanner);
+                    CityManager.CityMenu(client, scanner);
 
                 case 4:
                     System.exit(0);
@@ -80,4 +79,3 @@ public class Main {
 }
 
 
-}
