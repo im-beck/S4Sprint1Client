@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class CityMenu {
+public class CityManager {
     private static final String BASE_URL = "http://localhost:8080/api"; // Update the base URL as needed
 
     private static void getAirportsInCities(HttpClient client) {
