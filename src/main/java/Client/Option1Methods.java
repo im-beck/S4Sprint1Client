@@ -21,59 +21,60 @@ public class Option1Methods {
     public static void airportAircraftMenu() {
 
         Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nAirport/Aircraft Menu");
+            System.out.println("1. View all Airports");
+            System.out.println("2. View all Aircraft");
+            System.out.println("3. Add an Airport");
+            System.out.println("4. Add an Aircraft");
+            System.out.println("5. View an Aircraft");
+            System.out.println("6. Update an Airport");
+            System.out.println("7. Update an Aircraft");
+            System.out.println("8. Delete an Airport");
+            System.out.println("9. Delete an Aircraft");
+            System.out.println("10. Add an Airport to an Aircraft");
+            System.out.println("11. Exit");
 
-        System.out.println("\nAirport/Aircraft Menu");
-        System.out.println("1. View all Airports");
-        System.out.println("2. View all Aircraft");
-        System.out.println("3. Add an Airport");
-        System.out.println("4. Add an Aircraft");
-        System.out.println("5. View an Aircraft");
-        System.out.println("6. Update an Airport");
-        System.out.println("7. Update an Aircraft");
-        System.out.println("8. Delete an Airport");
-        System.out.println("9. Delete an Aircraft");
-        System.out.println("10. Add an Airport to an Aircraft");
-        System.out.println("11. Exit");
+            System.out.println("Enter your choice: ");
+            int choice = scanner.nextInt();
 
-        System.out.println("Enter your choice: ");
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 1:
-                viewAllAirports();
-                break;
-            case 2:
-                viewAllAircraft();
-                break;
-            case 3:
-                addAirport();
-                break;
-            case 4:
-                addAircraft();
-                break;
-            case 5:
-                viewAircraft();
-                break;
-            case 6:
-                updateAirport();
-                break;
-            case 7:
-                updateAircraft();
-                break;
-            case 8:
-                deleteAirport();
-                break;
-            case 9:
-                deleteAircraft();
-                break;
-            case 10:
-                addAirportToAircraft();
-                break;
-            case 11:
-                System.exit(0);
-            default:
-                System.out.println("Invalid choice. Please try again.");
-                break;
+            switch (choice) {
+                case 1:
+                    viewAllAirports();
+                    break;
+                case 2:
+                    viewAllAircraft();
+                    break;
+                case 3:
+                    addAirport();
+                    break;
+                case 4:
+                    addAircraft();
+                    break;
+                case 5:
+                    viewAircraft();
+                    break;
+                case 6:
+                    updateAirport();
+                    break;
+                case 7:
+                    updateAircraft();
+                    break;
+                case 8:
+                    deleteAirport();
+                    break;
+                case 9:
+                    deleteAircraft();
+                    break;
+                case 10:
+                    addAirportToAircraft();
+                    break;
+                case 11:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
         }
     }
     /**
@@ -162,7 +163,7 @@ public class Option1Methods {
      * @return the new unique airport ID.
      */
     public static int generateUniqueAirportID() {
-        AIRPORT_ID+= 1;
+        AIRPORT_ID+= 6;
 
 
         return AIRPORT_ID;
@@ -173,7 +174,7 @@ public class Option1Methods {
      * @return the new unique city ID.
      */
     public static int generateUniqueCityID() {
-        CITY_ID+= 1;
+        CITY_ID+= 6;
         return CITY_ID;
     }
 

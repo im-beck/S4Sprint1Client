@@ -61,9 +61,11 @@ public class Main {
 
                 case 2:
                     PassengerMenu.passengerMenu();
+                    break;
 
                 case 3:
                     CityManager.CityMenu(client, scanner);
+                    break;
 
                 case 4:
                     System.exit(0);

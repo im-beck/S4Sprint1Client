@@ -9,62 +9,63 @@ import java.net.http.HttpResponse;
 public class PassengerMenu {
     public static void passengerMenu() {
         Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nPassenger Management");
+            System.out.println("1. Add Passenger");
+            System.out.println("2. Update Passenger");
+            System.out.println("3. Delete Passenger");
+            System.out.println("4. Search Passenger");
+            System.out.println("5. Display all Passengers");
+            System.out.println("6. Display all aircraft a passenger has been on");
+            System.out.println("7. Add aircraft to passenger");
+            System.out.println("8. Add airport to passenger");
+            System.out.println("9. display all airports a passenger has been to");
+            System.out.println("10. delete aircraft from passenger");
+            System.out.println("11. delete airport from passenger");
+            System.out.println("12. Exit");
+            int choice = scanner.nextInt();
 
-        System.out.println("\nPassenger Management");
-        System.out.println("1. Add Passenger");
-        System.out.println("2. Update Passenger");
-        System.out.println("3. Delete Passenger");
-        System.out.println("4. Search Passenger");
-        System.out.println("5. Display all Passengers");
-        System.out.println("6. Display all aircraft a passenger has been on");
-        System.out.println("7. Add aircraft to passenger");
-        System.out.println("8. Add airport to passenger");
-        System.out.println("9. display all airports a passenger has been to");
-        System.out.println("10. delete aircraft from passenger");
-        System.out.println("11. delete airport from passenger");
-        System.out.println("12. Exit");
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 1:
-                addPassenger();
-                break;
-            case 2:
-                updatePassenger();
-                break;    
-            case 3:
-                deletePassenger();
-                break;
-            case 4:
-                searchPassenger();
-                break;
-            case 5:
-                displayAllPassengers();
-                break;
-            case 6:
-                displayAllAircraftPassenger();
-                break;
-            case 7:
-                addAircraftPassenger();
-                break;
-            case 8:
-                addAirportPassenger();
-                break;
-            case 9:
-                displayAllAirportsPassenger();
-                break;
-            case 10:
-                deleteAircraftPassenger();
-                break;
-            case 11:
-                deleteAirportPassenger();
-                break;
-            case 12:
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-    }
+            switch (choice) {
+                case 1:
+                    addPassenger();
+                    break;
+                case 2:
+                    updatePassenger();
+                    break;
+                case 3:
+                    deletePassenger();
+                    break;
+                case 4:
+                    searchPassenger();
+                    break;
+                case 5:
+                    displayAllPassengers();
+                    break;
+                case 6:
+                    displayAllAircraftPassenger();
+                    break;
+                case 7:
+                    addAircraftPassenger();
+                    break;
+                case 8:
+                    addAirportPassenger();
+                    break;
+                case 9:
+                    displayAllAirportsPassenger();
+                    break;
+                case 10:
+                    deleteAircraftPassenger();
+                    break;
+                case 11:
+                    deleteAirportPassenger();
+                    break;
+                case 12:
+                    return;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
     }
 
         public static void addPassenger() {
